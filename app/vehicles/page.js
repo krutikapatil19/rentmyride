@@ -1,9 +1,25 @@
+"use client";
+
 import Link from "next/link";
 import { vehicles } from "@/lib/data";
+import { useRouter } from "next/navigation";
 
 export default function VehiclesPage() {
+  const router = useRouter();
+  const handleLogout = () => {
+  localStorage.removeItem("user");
+  router.push("/login");
+};
   return (
     <main className="p-6">
+
+      <button
+        onClick={handleLogout}
+        className="mb-4 px-4 py-2 bg-red-500 text-white rounded"
+      >
+        Logout
+      </button>
+      
       <h1 className="text-3xl font-bold mb-6">Available Vehicles</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
