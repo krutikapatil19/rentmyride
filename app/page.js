@@ -43,7 +43,7 @@ export default function Home() {
 
         <div className="flex flex-col items-center gap-3 mt-6">
           <Link
-            href="/vehicles"
+            href="/login"
             className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition font-medium shadow-lg"
           >
             Get Started
@@ -54,6 +54,13 @@ export default function Home() {
             className="text-sm text-gray-400 hover:text-white transition"
           >
             Already have an account? Login
+          </Link>
+
+          <Link
+            href="/signup"
+            className="text-sm text-gray-400 hover:text-white transition"
+          >
+            Create new account? Sign up
           </Link>
         </div>
       </motion.div>

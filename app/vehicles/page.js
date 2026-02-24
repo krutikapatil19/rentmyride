@@ -2,12 +2,16 @@
 
 import Link from "next/link";
 import { vehicles } from "@/lib/data";
+
+import { signOut } from "next-auth/react";
+
 import { useRouter } from "next/navigation";
 
 export default function VehiclesPage() {
   const router = useRouter();
-  const handleLogout = () => {
+  const handleLogout = async () => {
   localStorage.removeItem("user");
+  await signOut({ redirect: false });
   router.push("/login");
 };
   return (
@@ -17,9 +21,9 @@ export default function VehiclesPage() {
         onClick={handleLogout}
         className="mb-4 px-4 py-2 bg-red-500 text-white rounded"
       >
-        Logout
+        LOGOUT
       </button>
-      
+
       <h1 className="text-3xl font-bold mb-6">Available Vehicles</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
