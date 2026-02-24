@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
+
+  const router = useRouter();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -18,7 +22,7 @@ export default function SignupPage() {
       body: JSON.stringify(form),
     });
 
-    alert("User created");
+    router.push("/login");
   };
 
   return (
