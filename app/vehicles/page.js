@@ -13,6 +13,7 @@ export default function VehiclesPage() {
   const router = useRouter();
 
   const [name, setName] = useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
   const user = localStorage.getItem("user");
@@ -20,6 +21,7 @@ export default function VehiclesPage() {
   if (user) {
     const parsed = JSON.parse(user);
     setName(parsed.name || "");
+    setRole(parsed.role || "");
   }
 }, []);
 
@@ -44,6 +46,12 @@ export default function VehiclesPage() {
           <p className="text-sm text-gray-500 mb-2">
             Hi {name} 👋
           </p>
+      )}
+
+        {role === "OWNER" && (
+        <button className="mb-4 px-4 py-2 bg-blue-600 text-white rounded">
+          Add Vehicle
+        </button>
       )}
 
       <h1 className="text-3xl font-bold mb-6">Available Vehicles</h1>
