@@ -7,12 +7,27 @@ import { signOut } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
 
+import { useEffect, useState } from "react";
+
 export default function VehiclesPage() {
   const router = useRouter();
+
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+  const user = localStorage.getItem("user");
+
+  if (user) {
+    const parsed = JSON.parse(user);
+    setName(parsed.name || "");
+  }
+}, []);
+
   const handleLogout = async () => {
   localStorage.removeItem("user");
   await signOut({ redirect: false });
   router.push("/login");
+
 };
   return (
     <main className="p-6">
@@ -23,6 +38,13 @@ export default function VehiclesPage() {
       >
         LOGOUT
       </button>
+
+        {/* if name exists, show greeting */}
+        {name && (
+          <p className="text-sm text-gray-500 mb-2">
+            Hi {name} 👋
+          </p>
+      )}
 
       <h1 className="text-3xl font-bold mb-6">Available Vehicles</h1>
 

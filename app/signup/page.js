@@ -19,9 +19,21 @@ export default function SignupPage() {
 
     await fetch("/api/signup", {
       method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(form),
     });
 
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        name: form.name,
+        email: form.email,
+        role: form.role
+      })
+    );
     router.push("/login");
   };
 

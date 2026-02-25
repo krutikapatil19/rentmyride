@@ -27,10 +27,11 @@ export default function LoginPage() {
     } else {
 
       setError("");
-      
+
       localStorage.setItem(         //saves user info in browser memory
       "user",
       JSON.stringify({
+         name: email.split("@")[0],
         email,
         role
       })
